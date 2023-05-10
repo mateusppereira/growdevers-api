@@ -5,17 +5,18 @@ import { ValidationError } from "../exceptions/validationError";
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   try {
-    console.log('[auth-middleware] Validando usuário e senha')
-    const username = req.headers.username
-    const password = req.headers.password
-    if (!username || !password) throw new ValidationError('Usuário e/ou senha não enviados')
+    next()
+    // console.log('[auth-middleware] Validando usuário e senha')
+    // const username = req.headers.username
+    // const password = req.headers.password
+    // if (!username || !password) throw new ValidationError('Usuário e/ou senha não enviados')
 
-    const growdever = selectGrowdeverByUsername(username.toString())
-    if (growdever?.getPassword() === password.toString()) {
-      next()
-    } else {
-      throw new UnauthorizedError('Usuario e/ou senha incorretos')
-    } 
+    // const growdever = selectGrowdeverByUsername(username.toString())
+    // if (growdever?.getPassword() === password.toString()) {
+    //   next()
+    // } else {
+    //   throw new UnauthorizedError('Usuario e/ou senha incorretos')
+    // } 
   } catch (error) {
     if (error instanceof ValidationError) {
       return res.status(400).json({ message: error.message })

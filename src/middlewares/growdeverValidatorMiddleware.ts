@@ -11,7 +11,8 @@ export const growdeverValidatorMiddleware = (req: Request, res: Response, next: 
     const inputPassword = req.body.password
     const growdeverToCreate = new Growdever(inputName, inputCpf, inputUsername, inputPassword)
     req.body.growdeverToCreate = growdeverToCreate
-  
+    console.log('[growdever-validator-middleware] Growdever validated', growdeverToCreate)
+
     next()
   } catch (error) {
     if (error instanceof ValidationError) {

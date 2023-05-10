@@ -21,7 +21,7 @@ export const registerMiddlewares = (app: Express) => {
     [isAdminMiddleware, growdeverValidatorMiddleware],
   );
 
-  app.get('*', authMiddleware)
+  // app.get('*', authMiddleware)
   app.put('*', authMiddleware)
   app.delete('*', authMiddleware)
 }

@@ -6,6 +6,8 @@ import { deleteSkillGrowdeverController } from './controllers/deleteSkillGrowdev
 import { getGrowdeverByUuidController } from './controllers/getGrowdeverByUuid';
 import { getGrowdeversController } from './controllers/getGrowdevers';
 import { updateGrowdeverController } from './controllers/updateGrowdever';
+import { createClienteController } from './controllers/createCliente';
+import { getClientesController } from './controllers/getClientes';
 
 export function registerRoutes(app: Express) {
   app.get('/growdevers', getGrowdeversController)
@@ -23,4 +25,8 @@ export function registerRoutes(app: Express) {
   
   app.delete('/growdevers/:uuid', deleteGrowdeverController)
 
+
+  app.post('/clientes', createClienteController);
+  
+  app.get('/clientes/:id', getClientesController);
 }
