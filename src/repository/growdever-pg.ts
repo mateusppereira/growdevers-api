@@ -78,10 +78,9 @@ export class GrowdeverRepository {
     const updateparams = [skills.join(SKILLS_SEPARATOR), uuid]
     const result = await query(addSkillSQL, updateparams)
 
-    if(result.rowCount > 0){
+    if(result.rowCount > 0) {
       return uuid
     }
-  
   }
 
 }
