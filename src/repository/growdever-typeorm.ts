@@ -5,6 +5,7 @@ import { GrowdeverEntity } from '../db/typeorm/growdever.entity';
 import { Repository } from 'typeorm';
 import { AddressEntity } from '../db/typeorm/address.entity';
 import { Address } from '../models/address';
+import { Assessment } from '../models/assessment';
 
 const SKILLS_SEPARATOR = '|';
 
@@ -48,7 +49,10 @@ export class GrowdeverTypeormRepository {
   }
 
   async getGrowdever(uuid: string): Promise<Growdever | undefined> {
-    const growdever = await this.growdeverRepository.findOne({ where: { uuid }, relations: ['address'] });
+    const growdever = await this.growdeverRepository.findOne({
+      where: { uuid },
+      relations: ['address', 'assessments'],
+    });
     if (growdever) {
       return new Growdever(
         growdever.name,
@@ -66,6 +70,16 @@ export class GrowdeverTypeormRepository {
             growdever.address?.createdAt,
             growdever.address?.updatedAt
           )
+          : undefined,
+        growdever.assessments?.length
+          ? growdever.assessments.map((assessment)=> new Assessment(
+            assessment.subject,
+            assessment.grade,
+            assessment.date,
+            assessment.createdAt,
+            assessment.updatedAt,
+            assessment.uuid,
+          ))
           : undefined,
       );
     }
