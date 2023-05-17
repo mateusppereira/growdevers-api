@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { selectGrowdeversByFilter } from "../db/growdevers";
-import { GrowdeverRepository } from "../repository/growdever";
+import { GrowdeverRepository } from "../repository/growdever-pg";
+import { GrowdeverTypeormRepository } from "../repository/growdever-typeorm";
 
 // export const getGrowdeversController = (req: Request, res: Response) => {
 //   const nameFilter = req.query.nome
@@ -17,6 +18,22 @@ import { GrowdeverRepository } from "../repository/growdever";
 //   res.json(allGrowdevers)
 // }
 
+// export const getGrowdeversController = async (req: Request, res: Response) => {
+//   const nameFilter = req.query.nome
+//   if (typeof nameFilter !== 'string' && nameFilter !== undefined) {
+//     return res.status(400).json({ message: 'Erro' });
+//   }
+
+//   const statusFilter = req.query.status
+//   if (typeof statusFilter !== 'string' && statusFilter !== undefined) {
+//     return res.status(400).json({ message: 'Erro' });
+//   }
+
+//   const growdeverRepository = new GrowdeverRepository();
+//   const allGrowdevers = await growdeverRepository.getAllGrowdevers();
+//   res.json(allGrowdevers)
+// }
+
 export const getGrowdeversController = async (req: Request, res: Response) => {
   const nameFilter = req.query.nome
   if (typeof nameFilter !== 'string' && nameFilter !== undefined) {
@@ -28,7 +45,7 @@ export const getGrowdeversController = async (req: Request, res: Response) => {
     return res.status(400).json({ message: 'Erro' });
   }
 
-  const growdeverRepository = new GrowdeverRepository();
+  const growdeverRepository = new GrowdeverTypeormRepository();
   const allGrowdevers = await growdeverRepository.getAllGrowdevers();
   res.json(allGrowdevers)
 }

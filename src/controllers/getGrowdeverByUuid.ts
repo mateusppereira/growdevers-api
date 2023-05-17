@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { selectGrowdeverByUuid } from "../db/growdevers";
-import { GrowdeverRepository } from "../repository/growdever";
+import { GrowdeverRepository } from "../repository/growdever-pg";
+import { GrowdeverTypeormRepository } from "../repository/growdever-typeorm";
 
 // export const getGrowdeverByUuidController = (req: Request, res: Response) => {
 //   const uuidFilter = req.params.uuid;
@@ -11,10 +12,20 @@ import { GrowdeverRepository } from "../repository/growdever";
 //   return res.status(404).json({ message: "Recurso não encontrado" })
 // }
 
+// export const getGrowdeverByUuidController = async (req: Request, res: Response) => {
+//   const uuidFilter = req.params.uuid;
+//   const growdeverRepository = new GrowdeverRepository();
+//   const selectedGrowdever = await growdeverRepository.getGrowdever(uuidFilter);
+  
+//   if (selectedGrowdever) {
+//     return res.status(200).json(selectedGrowdever)
+//   }
+//   return res.status(404).json({ message: "Recurso não encontrado" })
+// }
 
 export const getGrowdeverByUuidController = async (req: Request, res: Response) => {
   const uuidFilter = req.params.uuid;
-  const growdeverRepository = new GrowdeverRepository();
+  const growdeverRepository = new GrowdeverTypeormRepository();
   const selectedGrowdever = await growdeverRepository.getGrowdever(uuidFilter);
   
   if (selectedGrowdever) {

@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { cpf as cpfValidator } from 'cpf-cnpj-validator'
 import { ValidationError } from '../exceptions/validationError';
+import { Address } from './address';
 
 const SKILLS_VALIDAS = ['Dedicado', 'Criativo', 'Pro-ativo'];
 export class Growdever {
@@ -12,6 +13,7 @@ export class Growdever {
     private status: 'MATRICULADO' | 'ESTUDANDO' | 'FORMADO' = 'MATRICULADO',
     private skills: string[] = [],
     private uuid: string = uuidv4(),
+    private address?: Address,
   ) {
     if (name.split(' ').length < 2) throw new ValidationError('Nome invalido')
     if (!cpfValidator.isValid(cpf)) throw new ValidationError('CPF invalido')
