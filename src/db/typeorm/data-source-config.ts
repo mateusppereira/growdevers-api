@@ -1,8 +1,10 @@
 import 'dotenv/config';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { AddressEntity } from './address.entity';
-import { GrowdeverEntity } from './growdever.entity';
 import { AssessmentEntity } from './assessment.entity';
+import { GrowdeverEntity } from './growdever.entity';
+import { GrowdeversAPITables1684368544621 } from './migrations/1684368544621-GrowdeversAPITables';
+import { AddEmailToGrowdevers1684370687754 } from './migrations/1684370687754-AddEmailToGrowdevers';
 
 const config: DataSourceOptions = {
   type: 'postgres',
@@ -12,7 +14,12 @@ const config: DataSourceOptions = {
   ssl: {
     rejectUnauthorized: false,
   },
-  entities: [GrowdeverEntity, AddressEntity, AssessmentEntity]
+  entities: [GrowdeverEntity, AddressEntity, AssessmentEntity],
+  migrations: ['db/migrations/*.js'],
+  // migrations: [
+  //   GrowdeversAPITables1684368544621,
+  //   AddEmailToGrowdevers1684370687754
+  // ],
 };
 
 export const dataSource = new DataSource(config);
