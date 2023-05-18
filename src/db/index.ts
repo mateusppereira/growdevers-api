@@ -2,9 +2,9 @@ import { Pool } from 'pg';
 
 const pool = new Pool({
   ssl: true,
-  // connectionString: 'postgres://mateusppereira:TjtC42lDzQqp@ep-mute-haze-328124.us-east-2.aws.neon.tech/neondb',
-  host: 'ep-mute-haze-328124.us-east-2.aws.neon.tech',
-  password: 'TjtC42lDzQqp',
+  // connectionString: '',
+  host: '',
+  password: '',
   user: 'mateusppereira',
   database: 'neondb'
 });
