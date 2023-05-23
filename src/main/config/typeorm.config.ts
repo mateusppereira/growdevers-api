@@ -1,14 +1,16 @@
 import 'dotenv/config';
-import { DataSourceOptions } from 'typeorm';
-import { AddressEntity } from '../../db/typeorm/address.entity';
-import { AssessmentEntity } from '../../db/typeorm/assessment.entity';
-import { GrowdeverEntity } from '../../db/typeorm/growdever.entity';
+import { DataSource, DataSourceOptions } from 'typeorm';
+import { GrowdeverEntity } from '../../app/shared/database/entites/growdever.entity';
+import { GrowdeversAPITables1684368544621 } from '../../app/shared/database/migrations/1684368544621-GrowdeversAPITables';
 
 export const config: DataSourceOptions = {
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  logging: process.env.DEBUG_ORM === 'true',
+  logging: true,
+  // logging: process.env.DEBUG_ORM === 'true',
   ssl: { rejectUnauthorized: false },
-  entities: [GrowdeverEntity, AddressEntity, AssessmentEntity],
-  migrations: ['db/migrations/*.js'],
+  entities: [GrowdeverEntity],
+  migrations: [GrowdeversAPITables1684368544621],
 };
+
+export const dataSource = new DataSource(config);

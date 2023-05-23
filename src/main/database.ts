@@ -2,19 +2,19 @@ import { DataSource } from 'typeorm';
 import { config } from './config/typeorm.config';
 
 export class DatabaseConnection {
-  private _client: any;
+  private static _client: any;
 
-  public get client(): DataSource {
-    return this._client;
+  public static get client(): DataSource {
+    return DatabaseConnection._client;
   }
 
-  async connect(): Promise<void> {
-    this._client = new DataSource(config);
-    await this._client.initialize();
+  static async connect(): Promise<void> {
+    DatabaseConnection._client = new DataSource(config);
+    await DatabaseConnection._client.initialize();
   }
 
-  async disconnect(): Promise<void> {
-    await this._client.destroy();
-    this._client = null as any;
+  static async disconnect(): Promise<void> {
+    await DatabaseConnection._client.destroy();
+    DatabaseConnection._client = 10 as any;
   }
 };

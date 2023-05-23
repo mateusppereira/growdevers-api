@@ -1,12 +1,13 @@
 import { Router } from 'express';
+import { createGrowdeverController, getGrowdeversController } from './controller';
 
 const growdeverRoutes = Router();
 
-growdeverRoutes.get('/', (req, res) => res.send({}))
+growdeverRoutes.get('/', (req, res) => getGrowdeversController(req, res))
 
 growdeverRoutes.get('/:uuid',  (req, res) => res.send({}))
 
-growdeverRoutes.post('/',  (req, res) => res.send({}))
+growdeverRoutes.post('/',  (req, res) => createGrowdeverController(req, res))
 
 growdeverRoutes.put('/:uuid/add-skills',  (req, res) => res.send({}))
 

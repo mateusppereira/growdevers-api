@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { v4 as uuidv4 } from 'uuid';
 import express, { Express, Request, Response } from 'express';
 import { pgHelper } from './db/typeorm/pg-helper';
-import { registerMiddlewares } from './middlewares';
+// import { registerMiddlewares } from './middlewares';
 import { registerRoutes } from './routes';
 import { GrowdeverEntity } from './db/typeorm/growdever.entity';
 import { AddressEntity } from './db/typeorm/address.entity';
@@ -34,7 +34,7 @@ app.get('/address', async (_: Request, res: Response) => {
   });
 });
 
-registerMiddlewares(app);
+// registerMiddlewares(app);
 
 registerRoutes(app);
 
