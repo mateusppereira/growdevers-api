@@ -16,6 +16,7 @@ const config: DataSourceOptions = {
   },
   entities: [GrowdeverEntity, AddressEntity, AssessmentEntity],
   migrations: ['db/migrations/*.js'],
+  maxQueryExecutionTime: 10,
   // migrations: [
   //   GrowdeversAPITables1684368544621,
   //   AddEmailToGrowdevers1684370687754
